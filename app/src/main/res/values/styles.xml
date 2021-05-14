@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- style edit text   -->
+    <style name="styleEditTextNormal">
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <!-- style edit text enable   -->
+    <style name="styleEditTextEnable"
+        parent="styleEditTextNormal">
+        <item name="android:background">@drawable/background_edit_text</item>
+    </style>
+
+    <!-- style edit text disable   -->
+    <style name="styleEditTextDisable"
+        parent="styleEditTextNormal">
+        <item name="android:background">@drawable/background_disable_text</item>
+    </style>
+
+    <!-- style text view error   -->
+    <style name="styleTextViewError">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:textColor">@color/red_700</item>
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+</resources>

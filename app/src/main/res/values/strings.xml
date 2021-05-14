@@ -1,0 +1,55 @@
+<resources>
+    <!--Common -->
+    <string name="app_name">SavingMoneyApp</string>
+
+    <!--Common authenticate -->
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <!-- Login fragment -->
+    <string name="title_login">Login</string>
+    <string name="image_fingerprint_des">image fingerprint</string>
+
+    <!-- Registration fragment -->
+    <string name="title_registration">Register</string>
+    <string name="text_btn_next">Next</string>
+
+    <!-- Registration form fragment -->
+    <string name="registration_first_name">First Name</string>
+    <string name="registration_last_name">Last Name</string>
+    <string name="registration_gender">Gender</string>
+    <string name="registration_female">Female</string>
+    <string name="registration_male">Male</string>
+    <string name="registration_date_of_birth">Date of birth</string>
+    <string name="registration_email">Email</string>
+    <string name="registration_contact_with">Contact with</string>
+    <string name="message_require_first_name">First name is require.</string>
+    <string name="message_require_last_name">Last name is require.</string>
+    <string name="message_invalidate_email">Email is invalidate.</string>
+    <string name="message_require_email">Email is require.</string>
+    <string name="message_require_phone">Contact is require.</string>
+    <string name="message_invalidate_phone">Contact is invalidate.</string>
+
+    <!-- Registration confirm fragment -->
+    <string name="message_invalidate_length_password">Password must be than 8 character.</string>
+    <string name="message_invalidate_password">Password must have lowercase, uppercase number and special characters.</string>
+    <string name="message_require_password">Password is require.</string>
+    <string name="message_invalidate_password_confirm">Confirm password not match.</string>
+    <string name="message_require_password_confirm">Password confirm is empty.</string>
+
+    <!-- Facebook login sdk   -->
+    <string name="facebook_app_id">827427147833033</string>
+    <string name="fb_login_protocol_scheme">fb827427147833033</string>
+
+    <!-- prompt fingerprint -->
+    <string name="prompt_info_title">Sample App Authentication</string>
+    <string name="prompt_info_subtitle">Please login to get access</string>
+    <string name="prompt_info_description">Sample App is using Android biometric authentication</string>
+    <string name="prompt_info_use_app_password">Use app password</string>
+    <string name="secret_key_name">biometric_sample_encryption_key</string>
+
+</resources>
