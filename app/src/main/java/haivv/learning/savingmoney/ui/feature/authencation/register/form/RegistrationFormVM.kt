@@ -22,8 +22,6 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
     val validateLastName: LiveData<ValidationValueState>
         get() = _validateLastName
 
-    val isValidateDOB: MutableLiveData<ValidationValueState> = MutableLiveData()
-
     private val _validateEmail: MutableLiveData<ValidationValueState> = MutableLiveData()
     val validateEmail: LiveData<ValidationValueState>
         get() = _validateEmail
@@ -47,6 +45,11 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
     val phoneError = ObservableField<String>()
     val isEnableNextBtn = ObservableField<Boolean>()
 
+    /**
+     * set state validation first name
+     *
+     * @param firstName first name
+     */
     fun validateFirstName(firstName: String) {
         if (TextUtils.isEmpty(firstName)) {
             _validateFirstNameState.value = ValidationValueState.Empty
@@ -55,6 +58,11 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * set state validation last name
+     *
+     * @param lastName last name
+     */
     fun validateLastName(lastName: String) {
         when {
             TextUtils.isEmpty(lastName) -> {
@@ -66,6 +74,11 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * set state validation email
+     *
+     * @param email email
+     */
     fun validateEmail(email: String) {
         when {
             TextUtils.isEmpty(email) -> {
@@ -82,6 +95,11 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * set state validation phone
+     *
+     * @param phone phone number
+     */
     fun validatePhone(phone: String) {
         when {
             TextUtils.isEmpty(phone) -> {
@@ -96,6 +114,7 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    // validation info in page
     fun enableNextPage() {
         _isEnableNextPage.value = RegistrationValidation()
         addSourceValidateFirstName()
@@ -104,6 +123,9 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         addSourceValidationEmail()
     }
 
+    /**
+     * Add live data validate first name to check validation go next page
+     */
     private fun addSourceValidateFirstName() {
         _isEnableNextPage.addSource(validateFirstNameState) { validateFirstName ->
             val registrationValidation = _isEnableNextPage.value
@@ -123,6 +145,9 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * Add live data validate last name to check validation go next page
+     */
     private fun addSourceValidationLastName() {
         _isEnableNextPage.addSource(validateLastName) { validateLastName ->
             val registrationValidation = _isEnableNextPage.value
@@ -142,6 +167,9 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * Add live data validate phone number to check validation go next page
+     */
     private fun addSourceValidationPhone() {
         _isEnableNextPage.addSource(validatePhone) { validatePhone ->
             val registrationValidation = _isEnableNextPage.value
@@ -161,6 +189,10 @@ class RegistrationFormVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+
+    /**
+     * Add live data validate email to check validation go next page
+     */
     private fun addSourceValidationEmail() {
         _isEnableNextPage.addSource(validateEmail) { validateEmail ->
             val registrationValidation = _isEnableNextPage.value
