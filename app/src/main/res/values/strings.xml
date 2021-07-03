@@ -51,5 +51,12 @@
     <string name="prompt_info_description">Sample App is using Android biometric authentication</string>
     <string name="prompt_info_use_app_password">Use app password</string>
     <string name="secret_key_name">biometric_sample_encryption_key</string>
+    <string name="title_btn_ok_dialog">OK</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="gender">Gender</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="contact_with">Contact with</string>
+    <string name="confirm_password">Confirm password</string>
 
 </resources>

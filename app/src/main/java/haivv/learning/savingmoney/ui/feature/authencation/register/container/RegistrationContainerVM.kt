@@ -10,6 +10,9 @@ import haivv.learning.domain.authentication.CreateUserUC
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
+/**
+ *  Share data
+ */
 open class RegistrationContainerVM @Inject constructor(var createUserUC: CreateUserUC) :
     BaseViewModel() {
     var registerValue: MediatorLiveData<Result<Long>> = MediatorLiveData()
@@ -28,6 +31,11 @@ open class RegistrationContainerVM @Inject constructor(var createUserUC: CreateU
         createUserUC.compositeDisposable = compositeDisposable
     }
 
+    /**
+     *  Register user
+     *
+     *  @param user User need register
+     */
     fun register(user: User) {
         _user.value = user
         val registerResult = createUserUC(user)
@@ -43,10 +51,16 @@ open class RegistrationContainerVM @Inject constructor(var createUserUC: CreateU
         }
     }
 
+    /**
+     *  Change page form user information to confirm user information
+     */
     fun goNextPage() {
         _goNextPage.value = true
     }
 
+    /**
+     *  Setter user
+     */
     fun setUser(user: User) {
         _user.value = user
     }

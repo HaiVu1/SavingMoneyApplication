@@ -1,7 +1,5 @@
 package haivv.learning.savingmoney.ui.feature.authencation.register.form
 
-import android.app.Dialog
-import android.os.Bundle
 import android.widget.RadioGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
@@ -10,9 +8,9 @@ import haivv.learning.data.local.entities.User
 import haivv.learning.savingmoney.R
 import haivv.learning.savingmoney.databinding.RegistrationFromFragmentBinding
 import haivv.learning.savingmoney.ui.datetime.DatePickerFragment
-import haivv.learning.savingmoney.ui.datetime.createDatePickerMaxDate
 import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
 import haivv.learning.savingmoney.utils.ValidationValueState
+import haivv.learning.savingmoney.utils.binding.handleFocusChange
 import java.util.*
 
 class RegisterFormFragment :
@@ -35,23 +33,47 @@ class RegisterFormFragment :
 
     override fun initAction() {
         viewBinding.run {
+            // handle validate first name
             edtFirstName.doAfterTextChanged {
                 viewModel.validateFirstName(it.toString())
             }
+            handleFocusChange(
+                edtFirstName,
+                viewModel.validateFirstNameState,
+                this@RegisterFormFragment
+            )
+
+            // handle validation last name
             edtLastName.doAfterTextChanged {
                 viewModel.validateLastName(it.toString())
             }
+            handleFocusChange(edtLastName, viewModel.validateLastName, this@RegisterFormFragment)
+
+            // handle validation email
             edtEmail.doAfterTextChanged {
                 viewModel.validateEmail(it.toString())
             }
+            handleFocusChange(
+                edtEmail,
+                viewModel.validateEmail,
+                this@RegisterFormFragment
+            )
+
+            // handle validation phone
             edtPhone.doAfterTextChanged {
                 viewModel.validatePhone(it.toString())
             }
+            handleFocusChange(
+                edtPhone,
+                viewModel.validatePhone,
+                this@RegisterFormFragment
+            )
 
+            // handle validation dob
             edtDOB.setOnClickListener {
                 val datePickerFragment = DatePickerFragment()
                 datePickerFragment.show(childFragmentManager, "datePicker")
-                datePickerFragment.setDateInView = {date->
+                datePickerFragment.setDateInView = { date ->
                     edtDOB.text = date
                 }
             }
@@ -93,6 +115,11 @@ class RegisterFormFragment :
         }
     }
 
+    /**
+     * Show message state validation last name
+     *
+     * @param validateLastName state validation last name
+     */
     private fun showValidationLastName(validateLastName: ValidationValueState) {
         when (validateLastName) {
             ValidationValueState.Validate -> {
@@ -111,22 +138,42 @@ class RegisterFormFragment :
         }
     }
 
+    /**
+     * Show message state validation email
+     *
+     * @param validateEmail state validation email
+     */
     private fun showValidationEmail(validateEmail: ValidationValueState) {
         when (validateEmail) {
             ValidationValueState.Validate -> viewModel.emailError.set("")
             ValidationValueState.Invalidate -> viewModel.emailError.set(getString(R.string.message_invalidate_email))
             ValidationValueState.Empty -> viewModel.emailError.set(getString(R.string.message_require_email))
+            else -> {
+            }
         }
     }
 
+    /**
+     * Show message state validation phone
+     *
+     * @param validatePhone state validation phone
+     */
     private fun showValidationPhone(validatePhone: ValidationValueState) {
         when (validatePhone) {
             ValidationValueState.Validate -> viewModel.phoneError.set("")
             ValidationValueState.Invalidate -> viewModel.phoneError.set(getString(R.string.message_invalidate_phone))
             ValidationValueState.Empty -> viewModel.phoneError.set(getString(R.string.message_require_phone))
+            else -> {
+            }
         }
     }
 
+
+    /**
+     * Show message state validation next page
+     *
+     * @param enableNextPage state validation next page
+     */
     private fun enableBtnNext(enableNextPage: RegistrationValidation) {
         viewModel.isEnableNextBtn.set(
             (enableNextPage.validateFirstName &&
@@ -136,10 +183,13 @@ class RegisterFormFragment :
         )
     }
 
+    /**
+     * Saving data in current page then show next page
+     */
     private fun showConfirmPage() {
         viewBinding.btnNext.setOnClickListener {
             val user = User(
-                userId = "2",
+                userId = UUID.randomUUID().toString(),
                 userName = viewBinding.edtFirstName.text.toString().trim(),
                 password = "",
                 firstName = viewBinding.edtFirstName.text.toString().trim(),

@@ -12,6 +12,9 @@ import haivv.learning.savingmoney.utils.handleValidation
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
+/**
+ * Saving data using in Confirm form
+ */
 class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
     val passwordError = ObservableField<String>()
     val passwordConfirmError = ObservableField<String>()
@@ -35,6 +38,11 @@ class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
         compositeDisposable = CompositeDisposable()
     }
 
+    /**
+     *  Validation password input
+     *
+     *  @param pass password
+     */
     fun checkValidationPass(pass: String) {
         _passWord.value = pass
         when {
@@ -45,7 +53,7 @@ class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
             REGEX_PASSWORD.toRegex().matches(pass) -> {
                 _validatePassword.value = ValidationValueState.Validate
             }
-            pass.length < 8 ->{
+            pass.length < 8 -> {
                 _validatePassword.value =
                     ValidationValueState.LengthInvalidate
             }
@@ -56,6 +64,11 @@ class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * Validation password confirm
+     *
+     * @param passConfirm password confirm
+     */
     fun checkValidationPassConfirm(passConfirm: String) {
         when {
             TextUtils.isEmpty(passConfirm) -> {
@@ -72,12 +85,16 @@ class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    // Check validation input info
     fun enableRegister() {
         _isEnableRegister.value = PasswordValidation()
         addSourceValidatePass()
         addSourceValidateConfirmPass()
     }
 
+    /**
+     * Add live data validate Password to check validation register
+     */
     private fun addSourceValidatePass() {
         _isEnableRegister.addSource(validatePassword) { validatePassword ->
             val passwordValidation = _isEnableRegister.value
@@ -97,6 +114,9 @@ class RegistrationConfirmVM @Inject constructor() : BaseViewModel() {
         }
     }
 
+    /**
+     * Add live data validate confirm password to check validation register
+     */
     private fun addSourceValidateConfirmPass() {
         _isEnableRegister.addSource(validatePasswordConfirm) { validatePassConfirm ->
             val passwordValidation = _isEnableRegister.value

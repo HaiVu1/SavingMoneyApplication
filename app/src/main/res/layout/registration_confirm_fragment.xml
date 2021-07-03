@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="dataViewModel"
             type="haivv.learning.savingmoney.ui.feature.authencation.register.confirm.RegistrationConfirmVM" />
@@ -14,238 +15,257 @@
             type="haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true">
 
-            <View
-                android:id="@+id/centerHorizontal"
-                android:layout_width="0.5dp"
-                android:layout_height="0.5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvFirstName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="24dp"
-                android:text="First Name"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvFirstNameValue"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@{containerViewModel.user.firstName}"
-                app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
-
-
-            <TextView
-                android:id="@+id/tvLastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="Last Name"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/edtLastName"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@{containerViewModel.user.lastName}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
-
-            <TextView
-                android:id="@+id/tvGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="24dp"
-                android:text="Gender"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvFirstNameValue" />
-
-            <TextView
-                android:id="@+id/tvGenderValue"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                app:convertGender="@{containerViewModel.user.gender}"
-                app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
-
-            <TextView
-                android:id="@+id/tvDOB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="Date of birth"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toBottomOf="@+id/tvFirstNameValue" />
-
-            <TextView
-                android:id="@+id/tvDOBValue"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@{containerViewModel.user.dob}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toBottomOf="@+id/tvDOB" />
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="24dp"
-                android:text="Email"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvGenderValue" />
-
-            <TextView
-                android:id="@+id/tvEmailValue"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@{containerViewModel.user.email}"
-                app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
-
-
-            <TextView
-                android:id="@+id/tvPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="Contact with"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toBottomOf="@+id/tvDOBValue" />
-
-            <TextView
-                android:id="@+id/tvPhoneValue"
-                style="@style/styleEditTextDisable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@{containerViewModel.user.phoneNumber}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/centerHorizontal"
-                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
-
-            <TextView
-                android:id="@+id/tvPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="24dp"
-                android:text="Password"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvEmailValue" />
-
-            <EditText
-                android:id="@+id/edtPassword"
-                style="@style/styleEditTextEnable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
-
-            <TextView
-                android:id="@+id/tv_ErrorPassword"
-                style="@style/styleTextViewError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:showError="@{dataViewModel.passwordError}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edtPassword"
-                tools:ignore="SmallSp" />
-
-            <TextView
-                android:id="@+id/tvConfirmPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="24dp"
-                android:text="Confirm password"
-                android:textColor="@color/gray_900"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_ErrorPassword" />
-
-            <EditText
-                android:id="@+id/edtConfirmPassword"
-                style="@style/styleEditTextEnable"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmPassword" />
-
-
-            <TextView
-                android:id="@+id/tvErrorConfirmPass"
-                style="@style/styleTextViewError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:showError="@{dataViewModel.passwordConfirmError}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword"
-                tools:ignore="SmallSp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_register"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/title_registration"
-                app:isEnable="@{dataViewModel.isEnableRegisterBtn()}"
-                android:textAllCaps="false"
-                android:background="@drawable/background_button_disable"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvErrorConfirmPass" />
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <View
+                    android:id="@+id/centerHorizontal"
+                    android:layout_width="0.5dp"
+                    android:layout_height="0.5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/first_name"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvFirstNameValue"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="@{containerViewModel.user.firstName}"
+                    app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+
+
+                <TextView
+                    android:id="@+id/tvLastName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/last_name"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/edtLastName"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="@{containerViewModel.user.lastName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/gender"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvFirstNameValue" />
+
+                <TextView
+                    android:id="@+id/tvGenderValue"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    app:convertGender="@{containerViewModel.user.gender}"
+                    app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+
+                <TextView
+                    android:id="@+id/tvDOB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/date_of_birth"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFirstNameValue" />
+
+                <TextView
+                    android:id="@+id/tvDOBValue"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="@{containerViewModel.user.dob}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDOB" />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/registration_email"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvGenderValue" />
+
+                <TextView
+                    android:id="@+id/tvEmailValue"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="@{containerViewModel.user.email}"
+                    app:layout_constraintEnd_toStartOf="@id/centerHorizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/contact_with"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDOBValue" />
+
+                <TextView
+                    android:id="@+id/tvPhoneValue"
+                    style="@style/styleEditTextDisable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:text="@{containerViewModel.user.phoneNumber}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/centerHorizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+                <TextView
+                    android:id="@+id/tvPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/password"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmailValue" />
+
+                <EditText
+                    android:id="@+id/edtPassword"
+                    style="@style/styleEditTextEnable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+                    tools:ignore="LabelFor,TextFields" />
+
+                <TextView
+                    android:id="@+id/tv_ErrorPassword"
+                    style="@style/styleTextViewError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtPassword"
+                    app:showError="@{dataViewModel.passwordError}"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/tvConfirmPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/confirm_password"
+                    android:textColor="@color/gray_900"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_ErrorPassword" />
+
+                <EditText
+                    android:id="@+id/edtConfirmPassword"
+                    style="@style/styleEditTextEnable"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvConfirmPassword"
+                    tools:ignore="LabelFor,TextFields" />
+
+
+                <TextView
+                    android:id="@+id/tvErrorConfirmPass"
+                    style="@style/styleTextViewError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edtConfirmPassword"
+                    app:showError="@{dataViewModel.passwordConfirmError}"
+                    tools:ignore="SmallSp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/background_button_disable"
+                    android:text="@string/title_registration"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    app:backgroundTint="@null"
+                    app:isEnable="@{dataViewModel.isEnableRegisterBtn()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvErrorConfirmPass" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
 </layout>

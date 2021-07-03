@@ -14,7 +14,7 @@
     <!-- style edit text enable   -->
     <style name="styleEditTextEnable"
         parent="styleEditTextNormal">
-        <item name="android:background">@drawable/background_edit_text</item>
+        <item name="android:background">@drawable/background_edittext_state</item>
     </style>
 
     <!-- style edit text disable   -->

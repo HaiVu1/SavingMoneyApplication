@@ -17,7 +17,6 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         return createDatePickerMaxDate(requireContext(), this, Date())
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         // Do something with the date chosen by the user
