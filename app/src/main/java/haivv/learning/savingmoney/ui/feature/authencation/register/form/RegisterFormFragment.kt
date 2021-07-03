@@ -10,6 +10,8 @@ import haivv.learning.savingmoney.databinding.RegistrationFromFragmentBinding
 import haivv.learning.savingmoney.ui.datetime.DatePickerFragment
 import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
 import haivv.learning.savingmoney.utils.ValidationValueState
+import haivv.learning.savingmoney.utils.binding.handleFocusChange
+import haivv.learning.savingmoney.utils.binding.handleValidationFocusChange
 import java.util.*
 
 class RegisterFormFragment :
@@ -35,20 +37,36 @@ class RegisterFormFragment :
             edtFirstName.doAfterTextChanged {
                 viewModel.validateFirstName(it.toString())
             }
+            handleFocusChange(
+                edtFirstName,
+                viewModel.validateFirstNameState,
+                this@RegisterFormFragment
+            )
             edtLastName.doAfterTextChanged {
                 viewModel.validateLastName(it.toString())
             }
+            handleFocusChange(edtLastName, viewModel.validateLastName, this@RegisterFormFragment)
             edtEmail.doAfterTextChanged {
                 viewModel.validateEmail(it.toString())
             }
+            handleValidationFocusChange(
+                edtEmail,
+                viewModel.validateEmail,
+                this@RegisterFormFragment
+            )
             edtPhone.doAfterTextChanged {
                 viewModel.validatePhone(it.toString())
             }
+            handleValidationFocusChange(
+                edtPhone,
+                viewModel.validatePhone,
+                this@RegisterFormFragment
+            )
 
             edtDOB.setOnClickListener {
                 val datePickerFragment = DatePickerFragment()
                 datePickerFragment.show(childFragmentManager, "datePicker")
-                datePickerFragment.setDateInView = {date->
+                datePickerFragment.setDateInView = { date ->
                     edtDOB.text = date
                 }
             }
@@ -164,7 +182,7 @@ class RegisterFormFragment :
     private fun showConfirmPage() {
         viewBinding.btnNext.setOnClickListener {
             val user = User(
-                userId = "2",
+                userId = UUID.randomUUID().toString(),
                 userName = viewBinding.edtFirstName.text.toString().trim(),
                 password = "",
                 firstName = viewBinding.edtFirstName.text.toString().trim(),

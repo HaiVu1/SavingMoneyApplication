@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -74,6 +73,15 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel> : Fragment(
         }
     }
 
+    protected fun popBackStack() {
+        val currentDestination = navController?.currentDestination as? FragmentNavigator.Destination
+
+        currentDestination?.let {
+            navController?.popBackStack(currentDestination.id, true)
+        }
+
+    }
+
     protected fun popBackToSafety(desId: Int) {
         val currentDestination = navController?.currentDestination
         val currentDestinationId = currentDestination?.id
@@ -109,7 +117,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel> : Fragment(
     }
 
     protected open fun onBackPressed() {
-       popBackStackSafety()
+        popBackStackSafety()
     }
 
     override fun onDestroyView() {
