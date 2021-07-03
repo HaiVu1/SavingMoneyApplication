@@ -50,8 +50,8 @@ private fun getBackgroundColorEditText(
         when (validationState) {
             ValidationValueState.Validate -> R.drawable.background_edittext_focus
             ValidationValueState.Empty,
+            ValidationValueState.LengthInvalidate,
             ValidationValueState.Invalidate -> R.drawable.background_edittext_error
-            else -> R.drawable.background_edit_text
         }
     }
 }
