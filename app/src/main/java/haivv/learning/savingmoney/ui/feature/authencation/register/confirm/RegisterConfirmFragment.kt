@@ -10,7 +10,7 @@ import haivv.learning.savingmoney.databinding.RegistrationConfirmFragmentBinding
 import haivv.learning.savingmoney.ui.dialog.BottomSheetMessageDialog
 import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
 import haivv.learning.savingmoney.utils.ValidationValueState
-import haivv.learning.savingmoney.utils.binding.handleValidationFocusChange
+import haivv.learning.savingmoney.utils.binding.handleFocusChange
 
 class RegisterConfirmFragment :
     BaseFragment<RegistrationConfirmFragmentBinding, RegistrationConfirmVM>() {
@@ -38,7 +38,7 @@ class RegisterConfirmFragment :
                     viewBinding.edtConfirmPassword.text.toString()
                 )
             }
-            handleValidationFocusChange(
+            handleFocusChange(
                 edtPassword,
                 viewModel.validatePassword,
                 this@RegisterConfirmFragment
@@ -50,7 +50,7 @@ class RegisterConfirmFragment :
                     passwordConfirm.toString()
                 )
             }
-            handleValidationFocusChange(
+            handleFocusChange(
                 edtConfirmPassword,
                 viewModel.validatePasswordConfirm,
                 this@RegisterConfirmFragment

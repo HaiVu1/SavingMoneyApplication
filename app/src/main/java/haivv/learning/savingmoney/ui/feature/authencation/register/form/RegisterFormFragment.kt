@@ -11,7 +11,6 @@ import haivv.learning.savingmoney.ui.datetime.DatePickerFragment
 import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
 import haivv.learning.savingmoney.utils.ValidationValueState
 import haivv.learning.savingmoney.utils.binding.handleFocusChange
-import haivv.learning.savingmoney.utils.binding.handleValidationFocusChange
 import java.util.*
 
 class RegisterFormFragment :
@@ -34,6 +33,7 @@ class RegisterFormFragment :
 
     override fun initAction() {
         viewBinding.run {
+            // handle validate first name
             edtFirstName.doAfterTextChanged {
                 viewModel.validateFirstName(it.toString())
             }
@@ -42,27 +42,34 @@ class RegisterFormFragment :
                 viewModel.validateFirstNameState,
                 this@RegisterFormFragment
             )
+
+            // handle validation last name
             edtLastName.doAfterTextChanged {
                 viewModel.validateLastName(it.toString())
             }
             handleFocusChange(edtLastName, viewModel.validateLastName, this@RegisterFormFragment)
+
+            // handle validation email
             edtEmail.doAfterTextChanged {
                 viewModel.validateEmail(it.toString())
             }
-            handleValidationFocusChange(
+            handleFocusChange(
                 edtEmail,
                 viewModel.validateEmail,
                 this@RegisterFormFragment
             )
+
+            // handle validation phone
             edtPhone.doAfterTextChanged {
                 viewModel.validatePhone(it.toString())
             }
-            handleValidationFocusChange(
+            handleFocusChange(
                 edtPhone,
                 viewModel.validatePhone,
                 this@RegisterFormFragment
             )
 
+            // handle validation dob
             edtDOB.setOnClickListener {
                 val datePickerFragment = DatePickerFragment()
                 datePickerFragment.show(childFragmentManager, "datePicker")

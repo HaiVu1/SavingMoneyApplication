@@ -7,7 +7,13 @@ import androidx.lifecycle.LiveData
 import haivv.learning.savingmoney.R
 import haivv.learning.savingmoney.utils.ValidationValueState
 
-
+/**
+ * Set edittext focus change background color
+ *
+ * @param editText Edittext
+ * @param validationValueState livedata save state validation input
+ * @param lifecycleOwner lifecycleOwner for livedata validationValueState
+ */
 fun handleFocusChange(
     editText: EditText,
     validationValueState: LiveData<ValidationValueState>,
@@ -15,91 +21,37 @@ fun handleFocusChange(
 ) {
     editText.setOnFocusChangeListener { view, hasFocus ->
         validationValueState.observe(lifecycleOwner) { validationValueState ->
-            if (!hasFocus) {
-                if (validationValueState == ValidationValueState.Validate) {
-                    view.background = ContextCompat.getDrawable(
-                        editText.context,
-                        R.drawable.background_edit_text
-                    )
-                } else {
-                    view.background = ContextCompat.getDrawable(
-                        editText.context,
-                        R.drawable.background_edittext_error
-                    )
-                }
-            } else {
-                when (validationValueState) {
-                    ValidationValueState.Validate -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edittext_focus
-                        )
-                    }
-                    ValidationValueState.Empty -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edittext_error
-                        )
-                    }
-                    else -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edit_text
-                        )
-                    }
-                }
-            }
+            view.background = ContextCompat.getDrawable(
+                editText.context,
+                getBackgroundColorEditText(validationValueState, hasFocus)
+            )
         }
     }
 }
 
-fun handleValidationFocusChange(
-    editText: EditText,
-    validationValueState: LiveData<ValidationValueState>,
-    lifecycleOwner: LifecycleOwner
-) {
-    editText.setOnFocusChangeListener { view, hasFocus ->
-        validationValueState.observe(lifecycleOwner) { validationValueState ->
-            if (!hasFocus) {
-                if (validationValueState == ValidationValueState.Validate) {
-                    view.background = ContextCompat.getDrawable(
-                        editText.context,
-                        R.drawable.background_edit_text
-                    )
-                } else {
-                    view.background = ContextCompat.getDrawable(
-                        editText.context,
-                        R.drawable.background_edittext_error
-                    )
-                }
-            } else {
-                when (validationValueState) {
-                    ValidationValueState.Validate -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edittext_focus
-                        )
-                    }
-                    ValidationValueState.Empty -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edittext_error
-                        )
-                    }
-                    ValidationValueState.Invalidate -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edittext_error
-                        )
-                    }
-                    else -> {
-                        view.background = ContextCompat.getDrawable(
-                            editText.context,
-                            R.drawable.background_edit_text
-                        )
-                    }
-                }
-            }
+/**
+ * Get background color by validation state
+ *
+ * @param validationState : State Validate, Empty, Invalidate
+ * @param isFocus edittext has focused
+ *
+ * @return resource background color for edittext
+ */
+private fun getBackgroundColorEditText(
+    validationState: ValidationValueState,
+    isFocus: Boolean
+): Int {
+    return if (!isFocus) {
+        when (validationState) {
+            ValidationValueState.Validate -> R.drawable.background_edit_text
+            else -> R.drawable.background_edittext_error
+        }
+    } else {
+        when (validationState) {
+            ValidationValueState.Validate -> R.drawable.background_edittext_focus
+            ValidationValueState.Empty,
+            ValidationValueState.Invalidate -> R.drawable.background_edittext_error
+            else -> R.drawable.background_edit_text
         }
     }
 }
