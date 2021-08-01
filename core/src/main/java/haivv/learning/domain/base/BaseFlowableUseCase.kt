@@ -1,26 +1,31 @@
 package haivv.learning.domain.base
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import haivv.learning.data.Result
 import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.subscribers.DisposableSubscriber
-import java.util.concurrent.Executor
 
-abstract class BaseFlowableUseCase<T, Params>(
-    private val compositeDisposable: CompositeDisposable
-) {
+abstract class BaseFlowableUseCase<T, Params> {
+    lateinit var compositeDisposable: CompositeDisposable
     abstract fun buildUseCaseObservable(params: Params): Flowable<T>
 
-     operator fun invoke(disposableObserver: DisposableSubscriber<T>, params: Params) {
+    operator fun invoke(params: Params): LiveData<Result<T>> {
+        val result = MutableLiveData<Result<T>>()
+        result.value = Result.Loading
         val observer = this.buildUseCaseObservable(params)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                result.value = Result.Success(it)
+            }, {
+                result.value = Result.Error(it)
+            })
 
-        compositeDisposable.add(observer.subscribeWith(disposableObserver))
+        compositeDisposable.add(observer)
+        return result
     }
 
     fun dispose() {

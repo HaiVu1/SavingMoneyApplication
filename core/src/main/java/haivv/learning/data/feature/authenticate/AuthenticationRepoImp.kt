@@ -25,4 +25,8 @@ class AuthenticationRepoImp @Inject constructor(
     override fun deleteUser(user: User): Single<Int> {
         return userDao.delete(user)
     }
+
+    override fun getUserByEmail(email: String, password: String): Single<User> {
+        return userDao.getUserByEmailAndPass(email, password)
+    }
 }
