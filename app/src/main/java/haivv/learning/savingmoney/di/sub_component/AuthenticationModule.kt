@@ -7,8 +7,9 @@ import dagger.multibindings.IntoMap
 import haivv.learning.data.feature.authenticate.AuthenticationRepoImp
 import haivv.learning.data.feature.authenticate.AuthenticationRepository
 import haivv.learning.savingmoney.di.module.ViewModelKey
-import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
+import haivv.learning.savingmoney.ui.feature.authencation.login.LoginViewModel
 import haivv.learning.savingmoney.ui.feature.authencation.register.confirm.RegistrationConfirmVM
+import haivv.learning.savingmoney.ui.feature.authencation.register.container.RegistrationContainerVM
 import haivv.learning.savingmoney.ui.feature.authencation.register.form.RegistrationFormVM
 
 @Module
@@ -28,6 +29,12 @@ abstract class AuthenticationModule {
     @IntoMap
     @ViewModelKey(RegistrationFormVM::class)
     abstract fun bindsRegistrationFormVM(registrationFormVM: RegistrationFormVM): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindsLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 
 
     @Binds
