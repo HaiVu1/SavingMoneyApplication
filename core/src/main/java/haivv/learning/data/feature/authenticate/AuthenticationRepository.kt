@@ -2,7 +2,6 @@ package haivv.learning.data.feature.authenticate
 
 import haivv.learning.data.local.entities.User
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 
 interface AuthenticationRepository {
@@ -14,4 +13,6 @@ interface AuthenticationRepository {
     fun updateUser(user: User): Single<Int>
 
     fun deleteUser(user: User): Single<Int>
+
+    fun getUserByEmail(email: String, password: String): Single<User>
 }

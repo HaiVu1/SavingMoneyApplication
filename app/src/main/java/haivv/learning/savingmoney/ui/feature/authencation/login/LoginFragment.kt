@@ -3,36 +3,31 @@ package haivv.learning.savingmoney.ui.feature.authencation.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.google.android.material.transition.MaterialSharedAxis
+import haivv.learning.data.Result
+import haivv.learning.data.local.entities.User
 import haivv.learning.savingmoney.R
 import haivv.learning.savingmoney.common.SavingMoneyApplication
 import haivv.learning.savingmoney.databinding.LoginFragmentBinding
 import haivv.learning.savingmoney.ui.feature.authencation.BaseFingerprint
+import javax.inject.Inject
 
 class LoginFragment : BaseFingerprint<LoginFragmentBinding, LoginViewModel>() {
 
     private lateinit var callbackManager: CallbackManager
     private val callback = object : BiometricPrompt.AuthenticationCallback() {
 
-        override fun onAuthenticationError(errCode: Int, errString: CharSequence) {
-            super.onAuthenticationError(errCode, errString)
-
-        }
-
-        override fun onAuthenticationFailed() {
-            super.onAuthenticationFailed()
-
-        }
-
-        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-            super.onAuthenticationSucceeded(result)
-
-        }
     }
+
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val loginViewModel by viewModels<LoginViewModel> { viewModelFactory }
 
     override fun getLayoutResourceId(): Int {
         return R.layout.login_fragment
@@ -66,6 +61,13 @@ class LoginFragment : BaseFingerprint<LoginFragmentBinding, LoginViewModel>() {
         handleLoginFacebook()
 
         handleLoginFingerPrint()
+
+        viewBinding.btnLogin.setOnClickListener {
+            val user = User("")
+            user.email = viewBinding.edtEmail.text.toString().trim()
+            user.password = viewBinding.edtPassword.text.toString().trim()
+            loginViewModel.login(user)
+        }
 
     }
 
@@ -140,9 +142,22 @@ class LoginFragment : BaseFingerprint<LoginFragmentBinding, LoginViewModel>() {
     }
 
     override fun observeLiveData() {
-
+        loginViewModel.loginValue.observe(this, { result ->
+            when (result) {
+                is Result.Loading -> {
+                    Log.d("haivv", "Loading")
+                }
+                is Result.Success -> {
+                    Log.d("haivv", "Success")
+                    val user: User? = result.data
+                    user?.let { Log.d("haivv", user.toString()) } ?: Log.d("haivv", "null")
+                }
+                is Result.Error -> {
+                    Log.d("haivv", "Error")
+                }
+            }
+        })
     }
-
 
 
 }
