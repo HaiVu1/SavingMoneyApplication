@@ -9,6 +9,7 @@ import haivv.learning.savingmoney.di.module.AppModuleBinds
 import haivv.learning.savingmoney.di.module.SubComponentsModule
 import haivv.learning.savingmoney.di.module.ViewModelBuilderModule
 import haivv.learning.savingmoney.di.sub_component.AuthenticationComponent
+import haivv.learning.savingmoney.di.sub_component.HomeComponent
 import javax.inject.Singleton
 
 @Singleton
@@ -28,5 +29,7 @@ interface SavingMoneyComponent {
         fun create(@BindsInstance applicationContext: Context): SavingMoneyComponent
     }
 
-    fun authenticationComponent() :AuthenticationComponent.Factory
+    fun authenticationComponent(): AuthenticationComponent.Factory
+
+    fun homeComponent(): HomeComponent.Factory
 }
